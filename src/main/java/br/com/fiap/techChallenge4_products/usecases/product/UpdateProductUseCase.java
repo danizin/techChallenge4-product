@@ -19,17 +19,19 @@ public class UpdateProductUseCase {
 
     public Product execute(Long id, ProductUpdateData updateData) throws ProductNotFoundException {
         Product product = productGateway.findById(id).orElseThrow(ProductNotFoundException::new);
-        updatePropertyIfPresent(product::setName, updateData::name);
-        updatePriceIfPresent(product::setPrice, updateData::price);
+        updateNameIfPresent(product::setName, updateData::name);
+        updatePropertyIfPresent(product::setPrice, updateData::price);
+        updatePropertyIfPresent(product::setWidth, updateData::width);
+        updatePropertyIfPresent(product::setHeight, updateData::height);
 
         return this.productGateway.update(product);
     }
 
-    private void updatePropertyIfPresent(Consumer<String> setter, Supplier<Optional<String>> valueSupplier) {
+    private void updateNameIfPresent(Consumer<String> setter, Supplier<Optional<String>> valueSupplier) {
         valueSupplier.get().ifPresent(setter);
     }
 
-    private void updatePriceIfPresent(Consumer<BigDecimal> setter, Supplier<Optional<BigDecimal>> valueSupplier) {
+    private void updatePropertyIfPresent(Consumer<BigDecimal> setter, Supplier<Optional<BigDecimal>> valueSupplier) {
         valueSupplier.get().ifPresent(setter);
     }
 }

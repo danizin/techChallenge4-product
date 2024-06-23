@@ -17,12 +17,17 @@ public class Product extends AbstractEntity<Long> {
     private String name;
     private BigDecimal price;
     private Stock stock;
+    private BigDecimal width;
+    private BigDecimal height;
 
     public Product(){
     }
 
-    public Product(String name, BigDecimal price) {
+    public Product(String name, BigDecimal price, BigDecimal width, BigDecimal height) {
         this.name = name;
         this.price = price;
+        this.width = width;
+        this.height = height;
     }
+
 }

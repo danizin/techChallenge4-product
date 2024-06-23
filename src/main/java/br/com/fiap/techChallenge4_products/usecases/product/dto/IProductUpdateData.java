@@ -9,4 +9,8 @@ public interface IProductUpdateData {
 
     Optional<BigDecimal> price();
 
+    Optional<BigDecimal> width();
+
+    Optional<BigDecimal> height();
+
 }

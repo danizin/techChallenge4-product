@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public record ProductUpdateData(
         Optional<String> name,
-        Optional<BigDecimal> price
+        Optional<BigDecimal> price,
+        Optional<BigDecimal> width,
+        Optional<BigDecimal> height
 ) implements IProductUpdateData {
 }

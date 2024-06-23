@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 public class CreateProductController {
@@ -24,5 +26,11 @@ public class CreateProductController {
     @ResponseStatus(HttpStatus.CREATED)
     public ProductPublicData createProduct(@Valid @RequestBody ProductRegistrationData productData) {
         return new ProductPublicData(createProductUseCase.execute(productData));
+    }
+
+    @PostMapping("/products")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<ProductPublicData> createProducts(@Valid @RequestBody List<ProductRegistrationData> productDataList) {
+        return createProductUseCase.executeBatch(productDataList);
     }
 }

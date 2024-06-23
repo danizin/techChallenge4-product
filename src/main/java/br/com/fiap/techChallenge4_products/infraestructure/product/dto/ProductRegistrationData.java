@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 
 public record ProductRegistrationData(
         String name,
-        BigDecimal price
+        BigDecimal price,
+        BigDecimal width,
+        BigDecimal height
 ) implements IProductRegistrationData {
 }

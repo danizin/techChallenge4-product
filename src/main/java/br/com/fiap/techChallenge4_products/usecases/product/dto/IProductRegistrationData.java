@@ -6,4 +6,6 @@ import java.math.BigDecimal;
 public interface IProductRegistrationData {
     String name();
     BigDecimal price();
+    BigDecimal width();
+    BigDecimal height();
 }

@@ -1,11 +1,11 @@
 package br.com.fiap.techChallenge4_products.infraestructure.config.db.schema;
 
 
+import br.com.fiap.techChallenge4_products.entities.stock.model.Stock;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +16,7 @@ import lombok.Setter;
 public class StockSchema extends AbstractEntitySchema<Long> {
 
     private int quantity;
-    @NotNull
+
     @OneToOne
     @JoinColumn(name = "product_id")
     private ProductSchema product;
@@ -26,9 +26,16 @@ public class StockSchema extends AbstractEntitySchema<Long> {
         super();
     }
 
-    public StockSchema(ProductSchema productSchema) {
-        super();
-        this.quantity = 0;
-        this.product = productSchema;
+    public StockSchema(Stock stock) {
+        this.setId(stock.getId());
+        this.quantity = stock.getQuantity();
+    }
+
+    public Stock toStock() {
+        Stock stock = new Stock();
+        stock.setId(this.getId());
+        stock.setQuantity(this.getQuantity());
+
+        return stock;
     }
 }

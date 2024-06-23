@@ -11,13 +11,16 @@ public record ProductPublicData(
         Long id,
         String name,
         BigDecimal price,
-        Stock stock
+        BigDecimal width,
+        BigDecimal height
+
 ) implements IProductPublicData {
     public ProductPublicData(Product product) {
         this(
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
-                product.getStock());
+                product.getWidth(),
+                product.getHeight());
     }
 }

@@ -11,6 +11,8 @@ public interface IProductPublicData {
 
     BigDecimal price();
 
-    Stock stock();
+    BigDecimal width();
+
+    BigDecimal height();
 
 }

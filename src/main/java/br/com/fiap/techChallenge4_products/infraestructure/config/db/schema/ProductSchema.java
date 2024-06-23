@@ -26,8 +26,12 @@ public class ProductSchema extends AbstractEntitySchema<Long> {
     @NotNull
     private BigDecimal price;
 
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private StockSchema stock;
+
+    private BigDecimal width;
+
+    private BigDecimal height;
 
 
     public ProductSchema() {
@@ -38,11 +42,21 @@ public class ProductSchema extends AbstractEntitySchema<Long> {
         this.setId(product.getId());
         this.name = product.getName();
         this.price = product.getPrice();
+        this.width = product.getWidth();
+        this.height = product.getHeight();
+        if (product.getStock() != null) {
+            this.stock = new StockSchema(product.getStock());
+            this.stock.setProduct(this);
+        }
     }
 
     public Product toProduct() {
-        Product product = new Product(this.name, this.price);
+        Product product = new Product(this.name, this.price, this.width, this.height);
         product.setId(this.getId());
+        if (this.getStock() != null) {
+            product.setStock(this.getStock().toStock());
+        }
+
         return product;
     }
 
