@@ -38,4 +38,14 @@ public class StockSchema extends AbstractEntitySchema<Long> {
 
         return stock;
     }
+
+    public Stock toStockWithProduct() {
+        Stock stock = new Stock();
+        stock.setId(this.getId());
+        stock.setQuantity(this.getQuantity());
+        stock.setProduct(this.getProduct().toProduct());
+
+
+        return stock;
+    }
 }

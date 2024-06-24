@@ -17,22 +17,12 @@ public class StockDatabaseGateway implements StockGateway {
     }
 
     @Override
-    public Stock create(Stock stock) {
-        return stockRepository.save(new StockSchema(stock)).toStock();
-    }
-
-    @Override
     public Stock update(Stock stock) {
-        return stockRepository.save(new StockSchema(stock)).toStock();
+        return stockRepository.save(stock.toStockSchema()).toStockWithProduct();
     }
 
     @Override
-    public void delete(Long id) {
-        stockRepository.deleteById(id);
-    }
-
-    @Override
-    public Optional<Stock> findById(Long id) {
-        return stockRepository.findById(id).map(StockSchema::toStock);
+    public Optional<Stock> findByProductId(Long id) {
+        return stockRepository.findByProductId(id).map(StockSchema::toStockWithProduct);
     }
 }

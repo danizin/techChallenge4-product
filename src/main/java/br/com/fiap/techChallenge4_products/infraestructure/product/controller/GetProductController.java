@@ -2,7 +2,7 @@ package br.com.fiap.techChallenge4_products.infraestructure.product.controller;
 
 
 import br.com.fiap.techChallenge4_products.entities.product.exception.ProductNotFoundException;
-import br.com.fiap.techChallenge4_products.infraestructure.product.dto.ProductPublicData;
+import br.com.fiap.techChallenge4_products.infraestructure.product.dto.ProductWithStockPublicData;
 import br.com.fiap.techChallenge4_products.usecases.product.GetProductUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ public class GetProductController {
 
     @GetMapping("/product/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProductPublicData getProductByName(@PathVariable Long id) throws ProductNotFoundException {
-        return new ProductPublicData(getProductUseCase.execute(id));
+    public ProductWithStockPublicData getProductByName(@PathVariable Long id) throws ProductNotFoundException {
+        return new ProductWithStockPublicData(getProductUseCase.execute(id));
     }
 }

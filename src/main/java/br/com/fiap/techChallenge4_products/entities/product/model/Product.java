@@ -3,6 +3,7 @@ package br.com.fiap.techChallenge4_products.entities.product.model;
 
 import br.com.fiap.techChallenge4_products.entities.AbstractEntity;
 import br.com.fiap.techChallenge4_products.entities.stock.model.Stock;
+import br.com.fiap.techChallenge4_products.infraestructure.config.db.schema.ProductSchema;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,4 +31,14 @@ public class Product extends AbstractEntity<Long> {
         this.height = height;
     }
 
+    public ProductSchema toProductSchema() {
+        ProductSchema productSchema = new ProductSchema();
+        productSchema.setId(this.getId());
+        productSchema.setName(this.getName());
+        productSchema.setPrice(this.getPrice());
+        productSchema.setWidth(this.getWidth());
+        productSchema.setHeight(this.getHeight());
+
+        return productSchema;
+    }
 }
